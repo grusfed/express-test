@@ -27,7 +27,7 @@ var plugins = [
         title: 'Color picker',
         filename: config.buildPath + '/index.html',
         template : config.srcPath + '/index.html',
-        chunks: ['common', 'index'],
+        chunks: ['index'],
         inject: true
     }),
     new webpack.LoaderOptionsPlugin({
@@ -35,11 +35,6 @@ var plugins = [
         debug: false
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'common',
-        minChunks: Infinity,
-        filename: 'vendor.bundle.js'
-    }),
     new ngAnnotatePlugin({
       add: true,
     }),

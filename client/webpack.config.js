@@ -7,8 +7,7 @@ const plugins = require('./webpack/plugins'),
     loaders = require('./webpack/loaders');
 
 const entry = {
-    index: `${config.srcPath}/index`,
-    common: [`${config.srcPath}/vendors`]
+    index: `${config.srcPath}/index`
 };
 
 module.exports = {

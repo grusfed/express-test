@@ -8,6 +8,7 @@ import uiRouter from 'angular-ui-router';
 import { routeCnf } from './route.cnf';
 
 import { catsCtrl } from './main/cats/catsCtrl';
+import { catEditCtrl } from './main/cats/catEditCtrl';
 import { catsSrv } from './main/cats/catsSrv';
 
 import { emailsCtrl } from './main/emails/emails.ctrl';
@@ -18,6 +19,7 @@ import { topMenuCtrl, topMenuDrv } from './topMenu/topMenu.drv';
 
 angular.module('app', [ngMaterial, uiRouter])
 	.controller('catsCtrl', catsCtrl)
+	.controller('catEditCtrl', catEditCtrl)
 	.controller('emailsCtrl', emailsCtrl)
 	.controller('topMenuCtrl', topMenuCtrl)
 	.factory('catsSrv', catsSrv)
