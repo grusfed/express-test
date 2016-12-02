@@ -356,6 +356,51 @@ module.exports = function(key){
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return catsCtrl; });
+function catsCtrl(cats) {
+	var vm = this;
+	vm.data = {
+		cats: cats
+	};
+}
+
+catsCtrl.$inject = ['cats'];
+
+
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return catsSrv; });
+function catsSrv($q, $http) {
+  var apiUrl = '/api/v1/cats';
+  return {
+    getCats: getCats
+  };
+
+  function getCats() {
+    var deferred = $q.defer();
+    $http.get(apiUrl).then(function (res) {
+      console.log(res);
+      return deferred.resolve(res.data);
+    }, function (err) {
+      console.log('error: ', err);
+      deferred.reject(err);
+    });
+    return deferred.promise;
+  }
+}
+catsSrv.$inject = ['$q', '$http'];
+
+
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return emailsCtrl; });
 function emailsCtrl(emails) {
 	var vm = this;
@@ -369,7 +414,7 @@ emailsCtrl.$inject = ['emails'];
 
 
 /***/ },
-/* 29 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -409,74 +454,41 @@ emailsSrv.$inject = ['$q', '$http'];
 
 
 /***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return usersCtrl; });
-function usersCtrl(users) {
-	var vm = this;
-	vm.data = {
-		users: users
-	};
-}
-
-usersCtrl.$inject = ['users'];
-
-
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return usersSrv; });
-function usersSrv($q, $http) {
-	return {
-		getUsers: getUsers
-	};
-
-	function getUsers() {
-		var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 5;
-
-		var deferred = $q.defer();
-		$http.get('https://randomuser.me/api/?results=' + num).then(function (res) {
-			return deferred.resolve(res.data.results);
-		}, function (err) {
-			return deferred.reject(err);
-		});
-		return deferred.promise;
-	}
-}
-usersSrv.$inject = ['$q', '$http'];
-
-
-
-/***/ },
 /* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_html_loader_main_users_users_html__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_html_loader_main_users_users_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_html_loader_main_users_users_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_html_loader_main_emails_emails_html__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_html_loader_main_emails_emails_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_html_loader_main_emails_emails_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_html_loader_main_cats_catsView_html__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_html_loader_main_cats_catsView_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_html_loader_main_cats_catsView_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_html_loader_main_cats_catEditView_html__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_html_loader_main_cats_catEditView_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_html_loader_main_cats_catEditView_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_html_loader_main_emails_emails_html__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_html_loader_main_emails_emails_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_html_loader_main_emails_emails_html__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return routeCnf; });
 
 
 
+
 function routeCnf($stateProvider, $urlRouterProvider) {
-	$stateProvider.state('main', {
+	$stateProvider.state('cats', {
 		url: '/',
-		template: __WEBPACK_IMPORTED_MODULE_0_html_loader_main_users_users_html___default.a,
-		controller: 'usersCtrl',
+		template: __WEBPACK_IMPORTED_MODULE_0_html_loader_main_cats_catsView_html___default.a,
+		controller: 'catsCtrl',
 		resolve: {
-			users: userResolver
+			cats: catResolver
+		},
+		controllerAs: 'vm'
+	}).state('cat', {
+		url: '/cats/:id',
+		template: __WEBPACK_IMPORTED_MODULE_1_html_loader_main_cats_catEditView_html___default.a,
+		controller: 'catEditCtrl',
+		resolve: {
+			cat: catEditResolver
 		},
 		controllerAs: 'vm'
 	}).state('emails', {
 		url: '/emails',
-		template: __WEBPACK_IMPORTED_MODULE_1_html_loader_main_emails_emails_html___default.a,
+		template: __WEBPACK_IMPORTED_MODULE_2_html_loader_main_emails_emails_html___default.a,
 		controller: 'emailsCtrl',
 		resolve: {
 			emails: emailsResolver
@@ -486,10 +498,15 @@ function routeCnf($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/');
 
-	function userResolver(usersSrv) {
-		return usersSrv.getUsers();
+	function catEditResolver(catsSrv) {
+		return catsSrv.getCats();
 	}
-	userResolver.$inject = ['usersSrv'];
+	catEditResolver.$inject = ['catsSrv'];
+
+	function catResolver(catsSrv) {
+		return catsSrv.getCats();
+	}
+	catResolver.$inject = ['catsSrv'];
 
 	function emailsResolver(emailsSrv) {
 		return emailsSrv.getEmails();
@@ -505,7 +522,7 @@ routeCnf.$inject = ['$stateProvider', '$urlRouterProvider'];
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_html_loader_topMenu_drv_html__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_html_loader_topMenu_drv_html__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_html_loader_topMenu_drv_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_html_loader_topMenu_drv_html__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return topMenuCtrl; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return topMenuDrv; });
@@ -1066,22 +1083,28 @@ __webpack_require__(48)(String, 'String', function(iterated){
 /* 63 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=emails> <h2 class=page-header>Email</h2> <table class=\"table table-striped\"> <thead> <tr> <th>from</th> <th>date</th> <th>subject</th> </tr> </thead> <tbody> <tr ng-repeat=\"email in vm.data.emails track by $index\"> <td ng-bind=::email.from></td> <td ng-bind=\"::email.date | date\"></td> <td ng-bind=::email.subject></td> </tr> </tbody> </table> </div>";
+module.exports = "<form class=form-horizontal name=catForm> <fieldset> <legend>Cat Information</legend> <div class=form-group> <label class=\"col-md-2 control-label\" for=name>Name</label> <div class=col-md-4> <input class=form-control id=name name=name type=text placeholder=\"Cat Name\" ng-model=vm.cat.name required/> </div> </div> <div class=form-group> <label class=\"col-md-2 control-label\" for=age>Age</label> <div class=col-md-4> <input class=form-control id=age name=age type=text placeholder=\"Cat Age\" ng-model=vm.cat.age required/> </div> </div> <div class=form-group> <label class=\"col-md-2 control-label\" for=owner>Cat Owner</label> <div class=col-md-4> <input class=form-control id=owner name=owner type=text placeholder=\"Cat Owner\" ng-model=vm.cat.owner required/> </div> </div> <div class=form-group> <div class=\"col-md-4 col-md-offset-2\"> <span> <button class=\"btn btn-primary\" style=width:80px;margin-right:10px ng-click=vm.submit(catForm.$valid) ng-disabled=catForm.$invalid> Save </button> </span> <span> <button class=\"btn btn-default\" style=width:70px ng-click=vm.cancel()> Cancel </button> </span> </div> </div> </fieldset> </form> ";
 
 /***/ },
 /* 64 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=cards> <h2 class=page-header>Users</h2> <div class=card ng-repeat=\"user in vm.data.users track by $index\"> <header class=card-header ng-style=\"{backgroundImage: 'url('+user.picture.large+')'}\"> <h4 class=user-name>{{::user.name.first}} {{::user.name.last}}</h4> </header> <div class=card-body> <ul class=user-info> <li><i class=\"glyphicon glyphicon-phone\"></i> {{::user.email}}</li> <li><i class=\"glyphicon glyphicon-envelope\"></i> {{::user.email}}</li> <li><i class=\"glyphicon glyphicon-home\"></i> {{::user.location.city}}</li> </ul> </div> </div> <pre ng-bind=\"::vm.data.users | json\"></pre> </div>";
+module.exports = "<div class=cards> <h2 class=page-header>Cats</h2> <div class=card ng-repeat=\"cat in vm.data.cats track by $index\"> <header class=card-header ng-style=\"{backgroundImage: 'url('+cat.img+')'}\"> <a ui-sref=\"catEdit({id: cat.id})\"><h4 class=cat-name ng-bind=::cat.name></h4> </a> </header> <div class=card-body> <ul class=cat-info> <li><i class=\"glyphicon glyphicon-phone\"></i> {{::cat.age}}</li> <li><i class=\"glyphicon glyphicon-envelope\"></i> {{::cat.owner}}</li> </ul> </div> </div> <pre ng-bind=\"::vm.data.cats | json\"></pre> </div> ";
 
 /***/ },
 /* 65 */
 /***/ function(module, exports) {
 
-module.exports = "<nav> <ul class=\"nav nav-pills pull-right\"> <li role=presentation ui-sref-active=active> <a ui-sref=main>Users</a> </li> <li role=presentation ui-sref-active=active> <a ui-sref=emails>Email 2</a> </li> </ul> </nav>";
+module.exports = "<div class=emails> <h2 class=page-header>Email</h2> <table class=\"table table-striped\"> <thead> <tr> <th>from</th> <th>date</th> <th>subject</th> </tr> </thead> <tbody> <tr ng-repeat=\"email in vm.data.emails track by $index\"> <td ng-bind=::email.from></td> <td ng-bind=\"::email.date | date\"></td> <td ng-bind=::email.subject></td> </tr> </tbody> </table> </div>";
 
 /***/ },
 /* 66 */
+/***/ function(module, exports) {
+
+module.exports = "<nav> <ul class=\"nav nav-pills pull-right\"> <li role=presentation ui-sref-active=active> <a ui-sref=main>Cats</a> </li> <li role=presentation ui-sref-active=active> <a ui-sref=emails>Email 2</a> </li> </ul> </nav> ";
+
+/***/ },
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1092,10 +1115,10 @@ module.exports = "<nav> <ul class=\"nav nav-pills pull-right\"> <li role=present
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular_ui_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular_ui_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular_ui_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__route_cnf__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__main_users_users_ctrl__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__main_users_users_srv__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__main_emails_emails_ctrl__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__main_emails_emails_srv__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__main_cats_catsCtrl__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__main_cats_catsSrv__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__main_emails_emails_ctrl__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__main_emails_emails_srv__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__topMenu_topMenu_drv__ = __webpack_require__(33);
 
 
@@ -1110,10 +1133,10 @@ module.exports = "<nav> <ul class=\"nav nav-pills pull-right\"> <li role=present
 
 
 
-__WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('app', [__WEBPACK_IMPORTED_MODULE_2_angular_ui_router___default.a]).controller('usersCtrl', __WEBPACK_IMPORTED_MODULE_4__main_users_users_ctrl__["a" /* usersCtrl */]).controller('emailsCtrl', __WEBPACK_IMPORTED_MODULE_6__main_emails_emails_ctrl__["a" /* emailsCtrl */]).controller('topMenuCtrl', __WEBPACK_IMPORTED_MODULE_8__topMenu_topMenu_drv__["a" /* topMenuCtrl */]).factory('usersSrv', __WEBPACK_IMPORTED_MODULE_5__main_users_users_srv__["a" /* usersSrv */]).factory('emailsSrv', __WEBPACK_IMPORTED_MODULE_7__main_emails_emails_srv__["a" /* emailsSrv */]).directive('topMenu', __WEBPACK_IMPORTED_MODULE_8__topMenu_topMenu_drv__["b" /* topMenuDrv */]).config(__WEBPACK_IMPORTED_MODULE_3__route_cnf__["a" /* routeCnf */]);
+__WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('app', [__WEBPACK_IMPORTED_MODULE_2_angular_ui_router___default.a]).controller('catsCtrl', __WEBPACK_IMPORTED_MODULE_4__main_cats_catsCtrl__["a" /* catsCtrl */]).controller('emailsCtrl', __WEBPACK_IMPORTED_MODULE_6__main_emails_emails_ctrl__["a" /* emailsCtrl */]).controller('topMenuCtrl', __WEBPACK_IMPORTED_MODULE_8__topMenu_topMenu_drv__["a" /* topMenuCtrl */]).factory('catsSrv', __WEBPACK_IMPORTED_MODULE_5__main_cats_catsSrv__["a" /* catsSrv */]).factory('emailsSrv', __WEBPACK_IMPORTED_MODULE_7__main_emails_emails_srv__["a" /* emailsSrv */]).directive('topMenu', __WEBPACK_IMPORTED_MODULE_8__topMenu_topMenu_drv__["b" /* topMenuDrv */]).config(__WEBPACK_IMPORTED_MODULE_3__route_cnf__["a" /* routeCnf */]);
 
 __WEBPACK_IMPORTED_MODULE_1_angular___default.a.bootstrap(window.document, ['app']);
 
 /***/ }
-],[66]);
-//# sourceMappingURL=index.js.map?hash=73b6590cc5317dca52ee
+],[67]);
+//# sourceMappingURL=index.js.map?hash=67fdf16be93d72530aa9

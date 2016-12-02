@@ -1,17 +1,27 @@
-import usersTpl from 'html-loader!./main/users/users.html';
+import catsTpl from 'html-loader!./main/cats/catsView.html';
+import catEditTpl from 'html-loader!./main/cats/catEditView.html';
 import emailsTpl from 'html-loader!./main/emails/emails.html';
 
 function routeCnf($stateProvider, $urlRouterProvider) {
 	$stateProvider
-		.state('main', {
+		.state('cats', {
 			url: '/',
-			template: usersTpl,
-			controller: 'usersCtrl',
+			template: catsTpl,
+			controller: 'catsCtrl',
 			resolve: {
-				users: userResolver
+				cats: catResolver
 			},
 			controllerAs: 'vm'
 		})
+    .state('cat', {
+      url: '/cats/:id',
+      template: catEditTpl,
+      controller: 'catEditCtrl',
+      resolve: {
+        cat: catEditResolver
+      },
+      controllerAs: 'vm'
+    })
 		.state('emails', {
 			url: '/emails',
 			template: emailsTpl,
@@ -24,10 +34,15 @@ function routeCnf($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/');
 
-	function userResolver(usersSrv) {
-		return usersSrv.getUsers();
+  function catEditResolver(catsSrv) {
+    return catsSrv.getCats();
+  }
+  catEditResolver.$inject = ['catsSrv'];
+
+	function catResolver(catsSrv) {
+		return catsSrv.getCats();
 	}
-	userResolver.$inject = ['usersSrv'];
+	catResolver.$inject = ['catsSrv'];
 
 	function emailsResolver(emailsSrv) {
 		return emailsSrv.getEmails();

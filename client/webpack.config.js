@@ -2,7 +2,6 @@
 
 // webpack --json --profile > stat.json // open in http://webpack.github.io/analyse
 const config = require('./webpack/config');
-var autoprefixer = require('autoprefixer');
 
 var plugins = require('./webpack/plugins'),
     loaders = require('./webpack/loaders');

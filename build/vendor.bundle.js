@@ -86,7 +86,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "73b6590cc5317dca52ee"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "67fdf16be93d72530aa9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -775,7 +775,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(67)(__webpack_require__.s = 67);
+/******/ 	return hotCreateRequire(68)(__webpack_require__.s = 68);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -24032,7 +24032,7 @@ var inputType = {
      * Input with date validation and transformation. In browsers that do not yet support
      * the HTML5 date input, a text element will be used. In that case, text must be entered in a valid ISO-8601
      * date format (yyyy-MM-dd), for example: `2009-01-06`. Since many
-     * modern browsers do not yet support this input type, it is important to provide cues to users on the
+     * modern browsers do not yet support this input type, it is important to provide cues to cats on the
      * expected input format via a placeholder or label.
      *
      * The model must always be a Date object, otherwise Angular will throw an error.
@@ -25133,7 +25133,7 @@ function textInputType(scope, element, attr, ctrl, $sniffer, $browser) {
 function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   var type = lowercase(element[0].type);
 
-  // In composition mode, users are still inputing intermediate text buffer,
+  // In composition mode, cats are still inputing intermediate text buffer,
   // hold the listener until composition is done.
   // More about composition events: https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent
   if (!$sniffer.android) {
@@ -28420,7 +28420,7 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
  *   var value = modelValue || viewValue;
  *
  *   // Lookup user by username
- *   return $http.get('/api/users/' + value).
+ *   return $http.get('/api/cats/' + value).
  *      then(function resolved() {
  *        //username exists, this means validation fails
  *        return $q.reject('exists');
@@ -33177,9 +33177,10 @@ $provide.value("$locale", {
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
+
 /***/ },
 
-/***/ 67:
+/***/ 68:
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
@@ -40056,7 +40057,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * function SomeService($http, $stateParams) {
 	 *   return {
 	 *     getUser: function() {
-	 *       return $http.get('/api/users/' + $stateParams.username);
+	 *       return $http.get('/api/cats/' + $stateParams.username);
 	 *     }
 	 *   }
 	 * };
@@ -40501,7 +40502,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * The builder functions that can be decorated are listed below. Though not all
 	     * necessarily have a good use case for decoration, that is up to you to decide.
 	     *
-	     * In addition, users can attach custom decorators, which will generate new
+	     * In addition, cats can attach custom decorators, which will generate new
 	     * properties within the state's internal definition. There is currently no clear
 	     * use-case for this beyond accessing internal states (i.e. $state.$current),
 	     * however, expect this to become increasingly relevant as we introduce additional
@@ -40893,7 +40894,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * <pre>
 	 * <ul>
 	 *   <li ui-sref-active="active" class="item active">
-	 *     <a ui-sref="app.user({user: 'bilbobaggins'})" href="/users/bilbobaggins">@bilbobaggins</a>
+	 *     <a ui-sref="app.user({user: 'bilbobaggins'})" href="/cats/bilbobaggins">@bilbobaggins</a>
 	 *   </li>
 	 * </ul>
 	 * </pre>
@@ -41536,7 +41537,8 @@ return /******/ (function(modules) { // webpackBootstrap
 ;
 //# sourceMappingURL=angular-ui-router.js.map
 
+
 /***/ }
 
 /******/ });
-//# sourceMappingURL=vendor.bundle.js.map?hash=73b6590cc5317dca52ee
+//# sourceMappingURL=vendor.bundle.js.map?hash=67fdf16be93d72530aa9

@@ -5,7 +5,7 @@ gulp.task('default', ['server']);
 
 gulp.task('server', function() {
 	nodemon({
-		script: 'master.js',
+		script: 'server.js',
 		ext: 'js html',
 		execMap: {
 			js: 'node'

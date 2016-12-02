@@ -5,7 +5,7 @@
   "main": "api/index.js",
   "scripts": {
     "start": "npm run api | npm run front",
-    "api": "cd api/ && PORT=3001 gulp",
+    "api": "cd api/ && gulp",
     "front": "cd client/ && webpack --watch --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,11 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-ui-router": "^1.0.0-beta.2",
-    "express": "^4.14.0"
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "lodash": "^4.17.2",
+    "morgan": "^1.7.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
