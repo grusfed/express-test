@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+  background-color: #eee;
+}
+.page-header {
+  text-align: left;
+  border-bottom-color: #ccc;
+}
+.cards {
+  text-align: center;
+}
+.card {
+  width: 250px;
+  margin: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.card-header {
+  text-align: left;
+  padding: 100px 20px 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .user-name {
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.3);
+    text-transform: capitalize;
+  }
+}
+
+.user-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  li {
+    display: block;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px;
+    line-height: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    .glyphicon {
+      margin-right: 8px;
+    }
+  }
+  li:nth-last-child(1) {
+    border: none;
+  }
+}

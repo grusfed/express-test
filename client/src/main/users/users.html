@@ -1,0 +1,19 @@
+<div class="cards">
+    <h2 class="page-header">Users</h2>
+    <div class="card"
+         ng-repeat="user in vm.data.users track by $index"
+    >
+        <header class="card-header" ng-style="{backgroundImage: 'url('+user.picture.large+')'}">
+            <h4 class="user-name">{{::user.name.first}} {{::user.name.last}}</h4>
+        </header>
+        <div class="card-body">
+            <ul class="user-info">
+                <li><i class="glyphicon glyphicon-phone"></i> {{::user.email}}</li>
+                <li><i class="glyphicon glyphicon-envelope"></i> {{::user.email}}</li>
+                <li><i class="glyphicon glyphicon-home"></i> {{::user.location.city}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <pre ng-bind="::vm.data.users | json"></pre>
+</div>

@@ -1,0 +1,12 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  width: 200px;
+}
+.card-header {
+  padding: 150px 20px 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
