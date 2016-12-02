@@ -4,7 +4,7 @@
     <div class="card"
          ng-repeat="cat in vm.data.cats track by $index">
       <header class="card-header" ng-style="{backgroundImage: 'url('+cat.img+')'}">
-        <a ui-sref="catEdit({id: cat.id})">
+        <a class="cat-link" ui-sref="cat({id: cat.id})">
           <h4 class="cat-name" ng-bind="::cat.name"></h4>
         </a>
       </header>

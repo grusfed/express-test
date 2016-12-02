@@ -1,6 +1,6 @@
-function catEditCtrl(cat) {
+function catEditCtrl($state, cat) {
   let vm = this;
-  vm.cats = cat;
+  vm.cat = cat;
 
   vm.submit = function (isValid) {
     if (isValid) {

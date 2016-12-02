@@ -35,7 +35,7 @@ function routeCnf($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
 
   function catEditResolver(catsSrv) {
-    return catsSrv.getCats();
+    return catsSrv.getCatById();
   }
   catEditResolver.$inject = ['catsSrv'];
 
