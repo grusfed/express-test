@@ -1,5 +1,9 @@
 import './index.scss';
 import angular from 'angular'
+import 'angular-animate';
+import 'angular-aria';
+import ngMaterial from 'angular-material';
+
 import uiRouter from 'angular-ui-router';
 import { routeCnf } from './route.cnf';
 
@@ -11,7 +15,8 @@ import { emailsSrv } from './main/emails/emails.srv';
 
 import { topMenuCtrl, topMenuDrv } from './topMenu/topMenu.drv';
 
-angular.module('app', [uiRouter])
+
+angular.module('app', [ngMaterial, uiRouter])
 	.controller('catsCtrl', catsCtrl)
 	.controller('emailsCtrl', emailsCtrl)
 	.controller('topMenuCtrl', topMenuCtrl)

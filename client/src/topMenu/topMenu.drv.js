@@ -1,7 +1,10 @@
 import topMenuTpl from 'html-loader!./topMenu.drv.html';
 
 function topMenuCtrl() {
-	let vm = this;
+  this.currentNavItem = 'page1';
+  this.goto = function goto() {
+
+  }
 }
 
 function topMenuDrv() {
@@ -9,7 +12,7 @@ function topMenuDrv() {
 		restrict: 'EA',
 		template: topMenuTpl,
 		replace: true,
-		scope: {},
+    scope: {},
 		controller: 'topMenuCtrl',
 		controllerAs: 'vm',
 		bindToController: true

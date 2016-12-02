@@ -3,16 +3,12 @@
 // webpack --json --profile > stat.json // open in http://webpack.github.io/analyse
 const config = require('./webpack/config');
 
-var plugins = require('./webpack/plugins'),
+const plugins = require('./webpack/plugins'),
     loaders = require('./webpack/loaders');
 
-
-let entry = {
+const entry = {
     index: `${config.srcPath}/index`,
-    common: [
-        'angular',
-        'angular-ui-router'
-    ]
+    common: [`${config.srcPath}/vendors`]
 };
 
 module.exports = {
@@ -23,10 +19,7 @@ module.exports = {
         publicPath: '/',
         filename: '[name].js?hash=[hash]',
         chunkFilename: '[id].js?hash=[hash]',
-        sourceMapFilename: '[file].map?hash=[hash]',
-        devtoolModuleFilenameTemplate: function(info){
-            return encodeURI(info.resourcePath);
-        }
+        sourceMapFilename: '[file].map?hash=[hash]'
     },
     //displayModules: true,
     watch: false,
@@ -38,6 +31,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.sass', '.css', '.html'],
         modules: [
+            config.srcNodeModules,
             'node_modules'
         ]
     },

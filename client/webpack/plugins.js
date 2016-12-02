@@ -5,10 +5,8 @@ const config = require('./config'),
     rimraf = require('rimraf'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     CopyWebpackPlugin = require('copy-webpack-plugin'),
-    Bump = require('bump-webpack-plugin'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const ISPROD = 'production' === config.env;
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 var plugins = [
     // cleanup
@@ -18,7 +16,7 @@ var plugins = [
         }
     },
     new webpack.DefinePlugin({
-        ISPROD: ISPROD
+        ENV: config.env
     }),
     new CopyWebpackPlugin([
         {from: './src/assets', to: config.buildPath + '/assets'}
@@ -33,7 +31,7 @@ var plugins = [
         inject: true
     }),
     new webpack.LoaderOptionsPlugin({
-        minimize: true,
+        minimize: false,
         debug: false
     }),
     new webpack.HotModuleReplacementPlugin(),
@@ -42,19 +40,8 @@ var plugins = [
         minChunks: Infinity,
         filename: 'vendor.bundle.js'
     }),
+    new ngAnnotatePlugin({
+      add: true,
+    }),
 ];
-
-if (ISPROD) {
-    plugins.push(new Bump(['../package.json']));
-    plugins.push(new webpack.optimize.UglifyJsPlugin(
-        {
-            compress: {
-                warnings: false,
-                drop_console: true,
-                unsafe: true
-            }
-        }
-    ))
-}
-
 module.exports = plugins;

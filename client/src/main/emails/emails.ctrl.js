@@ -5,6 +5,4 @@ function emailsCtrl(emails) {
 	};
 }
 
-emailsCtrl.$inject = ['emails'];
-
 export { emailsCtrl }

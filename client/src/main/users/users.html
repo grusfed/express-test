@@ -1,0 +1,22 @@
+<md-content class="md-padding">
+  <div layout="row" layout-align="center" layout-wrap>
+    <md-card flex="15" ng-repeat="user in vm.data.users track by $index">
+      <md-card-header>
+        <md-card-header-text>
+          <span class="md-title">{{::user.name.first}} {{::user.name.last}}</span>
+        </md-card-header-text>
+        <md-button class="md-icon-button" aria-label="Edit">
+          <md-icon md-font-icon>mode_edit</md-icon>
+        </md-button>
+      </md-card-header>
+      <img ng-src="{{user.picture.large}}" class="md-card-image" alt="image caption">
+      <md-card-content>
+        <ul class="user-info">
+          <li><i class="glyphicon glyphicon-phone"></i> {{::user.email}}</li>
+          <li><i class="glyphicon glyphicon-envelope"></i> {{::user.email}}</li>
+          <li><i class="glyphicon glyphicon-home"></i> {{::user.location.city}}</li>
+        </ul>
+      </md-card-content>
+    </md-card>
+  </div>
+</md-content>

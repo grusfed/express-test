@@ -49,6 +49,4 @@ function routeCnf($stateProvider, $urlRouterProvider) {
 	}
 	emailsResolver.$inject = ['emailsSrv'];
 }
-
-routeCnf.$inject = ['$stateProvider', '$urlRouterProvider'];
 export { routeCnf };

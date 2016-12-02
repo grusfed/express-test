@@ -25,6 +25,5 @@ function emailsSrv($q, $http) {
 		return deferred.promise;
 	}
 }
-emailsSrv.$inject = ['$q', '$http'];
 
 export { emailsSrv };
