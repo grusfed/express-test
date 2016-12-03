@@ -12,7 +12,7 @@ function getRandomInt(min, max) {
 
 
 catsRouter.param('id', (req, res, next, id) => {
-  var cat = _.find(cats, {id: id});
+  let cat = _.find(cats, {id: id});
 
   if (cat) {
     req.cat = cat;
@@ -47,7 +47,7 @@ catsRouter.route('/')
 
 catsRouter.route('/:id')
   .get((req, res) => {
-    var cat = req.cat;
+    let cat = req.cat;
    // res.json(cat || {});
     if (cat) {
       res.json(cat);
@@ -56,24 +56,25 @@ catsRouter.route('/:id')
     }
   })
   .delete((req, res) => {
-    var cat = _.findIndex(cats, {id: req.params.id});
-    console.log('api- delete cat: ' + cat);
+    let cat = _.findIndex(cats, {id: req.params.id});
+    console.log('api- deleted cat: ' + cat);
 
-    if (cat) {
+    if (-1 !== cats[cat]) {
+      let id = cats[cat].id;
       cats.splice(cat, 1);
-      res.json(cat);
+      res.json(id);
     } else {
       res.status(404).send("Error 404: No cat found");
     }
   })
   .put((req, res) => {
-    var update = req.body;
+    let update = req.body;
 
-    var cat = _.findIndex(cats, {id: req.params.id});
+    let cat = _.findIndex(cats, {id: req.params.id});
     if (!cats[cat]) {
       res.status(404).send("Error 404: No cat found");
     } else {
-      var updatedCat = _.assign(cats[cat], update);
+      let updatedCat = _.assign(cats[cat], update);
       res.json(updatedCat);
     }
   });

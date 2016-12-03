@@ -9,7 +9,7 @@
     "front": "npm run clean && npm run build && npm run front:dev",
     "front:dev": "webpack-dev-server --config client/webpack.config.js --content-base build/",
     "build": "webpack --config client/webpack.config.js --progress --display-modules",
-    "clean": "rm -rf build/*",
+    "clean": "rimraf ./build",
     "webpack:stat": "webpack --config client/webpack.config.js --json --profile > stat.json"
   },
   "author": "",

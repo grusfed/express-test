@@ -7,9 +7,13 @@ function catsCtrl(catsSrv, cats) {
 
   function deleteCat(id) {
 
-    function onResolve(cat) {
-      console.log('deleted: ' + cat);
-      vm.data.cats.splice(cat, 1);
+    function onResolve(deletedId) {
+
+      let index = vm.data.cats.findIndex((el, ind, arr) => el.id === deletedId);
+      if (-1 !== index) {
+        console.log('deleted: ' + vm.data.cats[index]);
+        vm.data.cats.splice(index, 1);
+      }
     }
 
     function onReject(err) {
