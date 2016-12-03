@@ -1,20 +1,12 @@
-.cat-link {
-  display: block;
-  &,
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-}
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-}
 .card {
-  width: 200px;
+  min-width: 250px;
 }
-.card-header {
-  padding: 150px 20px 20px;
-  background-repeat: no-repeat;
+//cats view
+.primary-title {
   background-size: cover;
+  background-position: center center;
+  height: 150px;
+}
+.md-title {
+  color: #fff;
 }

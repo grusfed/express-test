@@ -5,12 +5,12 @@ const bodyParser =  require('body-parser');
 const cookieParser =  require('cookie-parser');
 const morgan = require('morgan');
 const _ = require('lodash');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const catsRouter = require('./modules/cats/catsRoutes');
 
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extend: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use('/api/v1/cats', catsRouter);

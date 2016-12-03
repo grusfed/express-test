@@ -1,23 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Demo</title>
 </head>
 <body>
-<div class="container">
-    <div class="header clearfix">
-        <top-menu></top-menu>
+<div layout="column" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <span>Demo app</span>
+      <!-- fill up the space between left and right area -->
+      <span flex></span>
+      <top-menu></top-menu>
     </div>
-
+  </md-toolbar>
+  <md-content>
     <div ui-view></div>
-    <footer class="footer">
-        <p>© Test 2</p>
-    </footer>
+  </md-content>
 </div>
 </body>
 </html>

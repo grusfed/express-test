@@ -1,10 +1,15 @@
 import './index.scss';
 import angular from 'angular'
+import 'angular-animate';
+import 'angular-aria';
+import ngMaterial from 'angular-material';
+
 import uiRouter from 'angular-ui-router';
 import { routeCnf } from './route.cnf';
 
 import { catsCtrl } from './main/cats/catsCtrl';
 import { catEditCtrl } from './main/cats/catEditCtrl';
+import { catAddCtrl } from './main/cats/catAddCtrl';
 import { catsSrv } from './main/cats/catsSrv';
 
 
@@ -13,9 +18,11 @@ import { emailsSrv } from './main/emails/emails.srv';
 
 import { topMenuCtrl, topMenuDrv } from './topMenu/topMenu.drv';
 
-angular.module('app', [uiRouter])
+
+angular.module('app', [ngMaterial, uiRouter])
 	.controller('catsCtrl', catsCtrl)
 	.controller('catEditCtrl', catEditCtrl)
+	.controller('catAddCtrl', catAddCtrl)
 	.controller('emailsCtrl', emailsCtrl)
 	.controller('topMenuCtrl', topMenuCtrl)
 	.factory('catsSrv', catsSrv)

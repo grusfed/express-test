@@ -1,11 +1,11 @@
-function catEditCtrl($state, catsSrv,  cat) {
+function catAddCtrl($state, catsSrv) {
   let vm = this;
-  vm.cat = cat;
+  vm.cat = {};
 
   vm.submit = function (isValid) {
 
     function onResolve(cat) {
-      console.log('updated: ' + cat);
+      console.log('added: ' + cat);
       $state.go('cats');
     }
 
@@ -14,8 +14,8 @@ function catEditCtrl($state, catsSrv,  cat) {
     }
 
     if (isValid) {
-      console.log("cat updated");
-      catsSrv.updateCat(vm.cat)
+      console.log("cat added");
+      catsSrv.addCat(vm.cat)
               .then(onResolve, onReject);
     } else {
       alert("Please correct the validation errors first.");
@@ -27,6 +27,6 @@ function catEditCtrl($state, catsSrv,  cat) {
   };
 }
 
-catEditCtrl.$inject = ['$state', 'catsSrv', 'cat'];
+catAddCtrl.$inject = ['$state', 'catsSrv'];
 
-export { catEditCtrl }
+export { catAddCtrl }

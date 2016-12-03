@@ -1,3 +1,4 @@
+buid
 # Logs
 logs
 *.log
@@ -38,3 +39,4 @@ jspm_packages
 
 .idea
 .vscode
+build

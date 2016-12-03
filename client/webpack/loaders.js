@@ -6,7 +6,6 @@ module.exports = {
     loaders: [
         {
             test: /\.js$/,
-            exclude: /node_modules/,
             include: [config.srcPath],
             loader: 'babel-loader',
             query: {
@@ -25,48 +24,16 @@ module.exports = {
         },
         {
             test: /\.css$/,
-            include: [config.srcPath],
+            include: /node_modules/,
             loader: ExtractTextPlugin.extract({
                 fallbackLoader: "style-loader",
                 loader: "css-loader"
             })
         },
-        {
-            test: /\.(jpg|jpeg|png|gif|ico)$/,
-            loader: 'file-loader',
-            query: {
-                name: '[name].[sha1:hash:base64:6].[ext]',
-                //regExp: '\/([a-z,\/]+)\/[a-z,0-9]+\..*'
-                regExp: '(assets/)'
-            }
-        },
-        {
-            test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000&mimetype=application/font-woff',
-            query: {
-                name: '[name].[sha1:hash:base64:6].[ext]',
-            }
-        },
-        {
-            test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000&mimetype=application/octet-stream',
-            query: {
-                name: '[name].[sha1:hash:base64:6].[ext]',
-            }
-        },
-        {
-            test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'file-loader',
-            query: {
-                name: '[name].[sha1:hash:base64:6].[ext]',
-            }
-        },
-        {
-            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000&mimetype=image/svg+xml',
-            query: {
-                name: '[name].[sha1:hash:base64:6].[ext]',
-            }
-        }
+      {
+        test: /\.(woff2?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        include: /node_modules/,
+        loader: "file?name=fonts/[name].[ext]"
+      }
     ]
 };

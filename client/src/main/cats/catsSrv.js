@@ -2,8 +2,56 @@ function catsSrv($q, $http) {
   const apiUrl = '/api/v1/cats';
   return {
     getCats: getCats,
-    getCatById: getCatById
+    getCatById: getCatById,
+    deleteCat: deleteCat,
+    addCat: addCat,
+    updateCat: updateCat
 	};
+
+  function addCat(cat) {
+    let deferred = $q.defer();
+    $http.post(apiUrl, cat).then(
+        res => {
+        console.log(res);
+        return deferred.resolve(res.data)
+      },
+        err => {
+        console.log('error: ', err);
+        deferred.reject(err)
+      }
+    );
+    return deferred.promise;
+  }
+
+  function updateCat(cat) {
+    let deferred = $q.defer();
+    $http.put(apiUrl, cat).then(
+        res => {
+        console.log(res);
+        return deferred.resolve(res.data)
+      },
+        err => {
+        console.log('error: ', err);
+        deferred.reject(err)
+      }
+    );
+    return deferred.promise;
+  }
+
+  function deleteCat(id) {
+    let deferred = $q.defer();
+    $http.delete(apiUrl + '/' + id).then(
+        res => {
+        console.log(res);
+        return deferred.resolve(res.data)
+      },
+        err => {
+        console.log('error: ', err);
+        deferred.reject(err)
+      }
+    );
+    return deferred.promise;
+  }
 
   function getCatById(id) {
     let deferred = $q.defer();
