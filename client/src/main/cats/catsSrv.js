@@ -12,8 +12,8 @@ function catsSrv($q, $http) {
     let deferred = $q.defer();
     $http.post(apiUrl, cat).then(
         res => {
-        console.log(res);
-        return deferred.resolve(res.data)
+          console.log("addCat: " + res.data);
+          return deferred.resolve(res.data)
       },
         err => {
         console.log('error: ', err);
@@ -27,7 +27,7 @@ function catsSrv($q, $http) {
     let deferred = $q.defer();
     $http.put(apiUrl, cat).then(
         res => {
-        console.log(res);
+          console.log("updateCat: " + res.data);
         return deferred.resolve(res.data)
       },
         err => {
@@ -42,7 +42,7 @@ function catsSrv($q, $http) {
     let deferred = $q.defer();
     $http.delete(apiUrl + '/' + id).then(
         res => {
-        console.log(res);
+          console.log("getCatById: " + res.data);
         return deferred.resolve(res.data)
       },
         err => {
@@ -57,7 +57,7 @@ function catsSrv($q, $http) {
     let deferred = $q.defer();
     $http.get(apiUrl + '/' + id).then(
         res => {
-        console.log(res);
+        console.log("getCatById: " + res.data);
         return deferred.resolve(res.data)
       },
         err => {
@@ -72,7 +72,7 @@ function catsSrv($q, $http) {
 		let deferred = $q.defer();
 		$http.get(apiUrl).then(
 			res => {
-        console.log(res);
+        console.log("getCats: " + res.data);
         return deferred.resolve(res.data)
       },
 			err => {
