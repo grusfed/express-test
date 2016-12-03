@@ -5,7 +5,7 @@ var request = require('supertest');
 describe('cats', function() {
   it('should GET all cats', function(done) {
     request(app)
-      .get('/cats')
+      .get('/cats/:id')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
