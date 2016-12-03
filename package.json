@@ -5,12 +5,18 @@
   "main": "api/index.js",
   "scripts": {
     "start": "npm run api | npm run front",
-    "api": "cd api/ && gulp",
-    "front": "cd client/ && webpack --watch --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "api": "gulp --cwd api/",
+    "front": "npm run build && npm run front:dev",
+    "front:dev": "webpack-dev-server --config client/webpack.config.js --content-base build/",
+    "build": "webpack --config client/webpack.config.js --progress --display-modules",
+    "webpack:stat": "webpack --config client/webpack.config.js --json --profile > stat.json"
   },
   "author": "",
   "license": "MIT",
+  "config" : {
+    "apiPort": "3001",
+    "clientPort": "5001"
+  },
   "dependencies": {
     "angular": "^1.5.8",
     "angular-animate": "^1.5.9",
@@ -24,8 +30,6 @@
     "morgan": "^1.7.0"
   },
   "devDependencies": {
-    "assets-webpack-plugin": "^3.4.0",
-    "autoprefixer": "^6.4.1",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.9.0",
@@ -34,19 +38,15 @@
     "babel-preset-es2015-native-modules": "^6.9.4",
     "babel-preset-stage-0": "^6.5.0",
     "babel-runtime": "^6.9.2",
-    "bundle-loader": "^0.5.4",
-    "connect-history-api-fallback": "^1.2.0",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
     "css-sourcemaps-webpack-plugin": "^1.0.3",
-    "exports-loader": "^0.6.3",
     "extract-text-webpack-plugin": "^2.0.0-beta",
     "file-loader": "^0.9.0",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.22.0",
-    "imports-loader": "^0.6.5",
     "ng-annotate-webpack-plugin": "^0.1.3",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.13.0",
@@ -57,7 +57,6 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.1.0-beta.25",
-    "webpack-dashboard": "^0.2.0",
     "webpack-dev-server": "^2.0.0-beta"
   }
 }

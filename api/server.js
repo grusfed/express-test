@@ -5,7 +5,8 @@ const bodyParser =  require('body-parser');
 const cookieParser =  require('cookie-parser');
 const morgan = require('morgan');
 const _ = require('lodash');
-const PORT = process.env.PORT || 5000;
+const projectConfig = require('../package.json');
+const PORT = process.env.PORT || projectConfig.config.apiPort;
 const catsRouter = require('./modules/cats/catsRoutes');
 
 
@@ -25,8 +26,6 @@ app.use((err, req, res, next) => {
     loggError((err, res));
   }
 });
-app.use('', express.static(path.resolve('../build')));
-
 
 app.listen(PORT, function() {
   console.log("Node app is running at localhost:" + PORT);

@@ -1,9 +1,6 @@
 import './index.scss';
-import angular from 'angular'
-import 'angular-animate';
-import 'angular-aria';
-import ngMaterial from 'angular-material';
 
+import ngMaterial from 'angular-material';
 import uiRouter from 'angular-ui-router';
 import { routeCnf } from './route.cnf';
 
