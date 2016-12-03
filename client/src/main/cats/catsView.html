@@ -1,6 +1,6 @@
 <md-content class="md-padding">
   <div layout="row" layout-align="center" layout-wrap>
-    <md-card flex="20" ng-repeat="cat in vm.data.cats track by $index" class="card">
+    <md-card flex="20" ng-repeat="cat in vm.data.cats track by cat.id" class="card">
       <md-card-header class="primary-title" ng-style="{backgroundImage: 'url(' + cat.img + ')'}">
         <md-card-header-text>
           <span class="md-title">{{::cat.name}}</span>
