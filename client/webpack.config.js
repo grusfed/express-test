@@ -59,7 +59,7 @@ module.exports = {
     inline: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: `http://localhost:${config.apiPort}`,
         secure: false
       }
     }
