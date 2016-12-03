@@ -56,16 +56,9 @@ catsRouter.route('/:id')
     }
   })
   .delete((req, res) => {
-    let cat = _.findIndex(cats, {id: req.params.id});
-    console.log('api- deleted cat: ' + cat);
-
-    if (-1 !== cats[cat]) {
-      let id = cats[cat].id;
-      cats.splice(cat, 1);
-      res.json(id);
-    } else {
-      res.status(404).send("Error 404: No cat found");
-    }
+    console.log('api- deleted cat: ' + req.params.id);
+    cats = cats.filter(c => c.id !== req.params.id);
+    res.json(cats);
   })
   .put((req, res) => {
     let update = req.body;
