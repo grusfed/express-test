@@ -6,16 +6,17 @@
   "scripts": {
     "start": "npm run api | npm run front",
     "api": "gulp --cwd api/",
-    "front": "npm run build && npm run front:dev",
+    "front": "npm run clean && npm run build && npm run front:dev",
     "front:dev": "webpack-dev-server --config client/webpack.config.js --content-base build/",
     "build": "webpack --config client/webpack.config.js --progress --display-modules",
+    "clean": "rm -rf build/*",
     "webpack:stat": "webpack --config client/webpack.config.js --json --profile > stat.json"
   },
   "author": "",
   "license": "MIT",
   "config" : {
-    "apiPort": "3001",
-    "clientPort": "5001"
+    "apiPort": "3000",
+    "clientPort": "5000"
   },
   "dependencies": {
     "angular": "^1.5.8",
