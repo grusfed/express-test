@@ -7,6 +7,5 @@ module.exports = {
   env: process.env.NODE_ENV || 'development',
   srcNodeModules: path.resolve(__dirname, '../node_models'),
   srcPath: path.resolve(__dirname, '../src'),
-  devPath: path.resolve(__dirname, '../build/'),
-  buildPath: '../build/'
+  buildPath: path.resolve(__dirname, '../../build'),
 };
