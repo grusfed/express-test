@@ -25,7 +25,7 @@ function catsSrv($q, $http) {
 
   function updateCat(cat) {
     let deferred = $q.defer();
-    $http.put(apiUrl, cat).then(
+    $http.put(apiUrl + '/' + cat.id, cat).then(
         res => {
           console.log("updateCat: " + res.data);
         return deferred.resolve(res.data)

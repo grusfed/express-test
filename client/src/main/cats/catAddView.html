@@ -1,60 +1,31 @@
-<form class="form-horizontal" name="catForm">
-  <fieldset>
-    <legend>Add Cat</legend>
-    <div class="form-group">
-      <label class="col-md-2 control-label" for="name">Name</label>
-      <div class="col-md-4">
-        <input class="form-control"
-               id="name"
-               name="name"
-               type="text"
-               placeholder="Cat Name"
-               ng-model="vm.cat.name"
-               required/>
-      </div>
+<form class="form-horizontal" name="addCatForm">
+  <md-content class="md-padding">
+    <div layout="row" layout-align="center" layout-wrap>
+      <md-card flex="50">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Add Cat</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <md-input-container class="md-block">
+            <label>Cat Name</label>
+            <input ng-model="vm.cat.name">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Cat Age</label>
+            <input ng-model="vm.cat.age">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Owner</label>
+            <input ng-model="vm.cat.owner">
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ui-sref-active="md-raised" ng-click="vm.submit(addCatForm.$valid)">Add</md-button>
+          <md-button ui-sref-active="md-raised" ng-click="vm.cancel()">Cancel</md-button>
+        </md-card-actions>
+      </md-card>
     </div>
-    <div class="form-group">
-      <label class="col-md-2 control-label" for="age">Age</label>
-      <div class="col-md-4">
-        <input class="form-control"
-               id="age"
-               name="age"
-               type="text"
-               placeholder="Cat Age"
-               ng-model="vm.cat.age"
-               required/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-md-2 control-label" for="owner">Cat Owner</label>
-      <div class="col-md-4">
-        <input class="form-control"
-               id="owner"
-               name="owner"
-               type="text"
-               placeholder="Cat Owner"
-               ng-model="vm.cat.owner"
-               required/>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-4 col-md-offset-2">
-        <span>
-          <button class="btn btn-primary"
-                  style="width:80px;margin-right:10px"
-                  ng-click="vm.submit(catForm.$valid)"
-                  ng-disabled="catForm.$invalid">
-            Add
-          </button>
-        </span>
-        <span>
-          <button class="btn btn-default"
-                  style="width:70px"
-                  ng-click="vm.cancel()">
-            Cancel
-          </button>
-        </span>
-      </div>
-    </div>
-  </fieldset>
+  </md-content>
 </form>
