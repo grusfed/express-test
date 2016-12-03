@@ -10,16 +10,16 @@ import { catEditCtrl } from './main/cats/catEditCtrl';
 import { catAddCtrl } from './main/cats/catAddCtrl';
 import { catsSrv } from './main/cats/catsSrv';
 
-import { topMenuCtrl, topMenuDrv } from './topMenu/topMenu.drv';
+import { toolbarItemCtrl, toolbarItemDrv } from './toolbarItem/toolbarItemDrv';
 
 
 angular.module('app', [ngAnimate, ngMaterial, uiRouter])
 	.controller('catsCtrl', catsCtrl)
 	.controller('catEditCtrl', catEditCtrl)
 	.controller('catAddCtrl', catAddCtrl)
-	.controller('topMenuCtrl', topMenuCtrl)
+	.controller('toolbarItemCtrl', toolbarItemCtrl)
 	.factory('catsSrv', catsSrv)
-	.directive('topMenu', topMenuDrv)
+	.directive('toolbarItem', toolbarItemDrv)
 	.config(routeCnf);
 
 angular.bootstrap(window.document, ['app']);
